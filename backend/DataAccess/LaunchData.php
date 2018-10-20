@@ -45,6 +45,8 @@ class LaunchData {
 		$scheduled = Array();
 		
 		foreach($obj->launches as $jsonObj){
+			//print "<pre>"; print_r($jsonObj); print "</pre>"; 
+			//exit();			
 			$launch = $this->convertJsonToDto($jsonObj);
 			$scheduled[] = $launch;
 		}
@@ -60,6 +62,18 @@ class LaunchData {
 		$launch->location = $jsonObj->location->name;
 		$launch->rocket = $jsonObj->rocket->name;
 		$launch->image = $jsonObj->rocket->imageURL;
+		if(is_array($jsonObj->missions) && !empty($jsonObj->missions[0])){
+			$launch->missionName = $jsonObj->missions[0]->name;
+			$launch->missionDescr = $jsonObj->missions[0]->description;	
+			if(is_array($jsonObj->missions[0]->agencies) && !empty($jsonObj->missions[0]->agencies[0]) ){
+				$launch->agency = $jsonObj->missions[0]->agencies[0]->name;	
+			}
+		}
+		if(is_array($jsonObj->location->pads) && !empty($jsonObj->location->pads[0])){
+			$launch->mapURL = $jsonObj->location->pads[0]->mapURL;
+			$launch->latitude = $jsonObj->location->pads[0]->latitude;
+			$launch->longitude = $jsonObj->location->pads[0]->longitude;	
+		}
 		
 		return $launch;
 	}
