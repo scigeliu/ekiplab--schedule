@@ -1,22 +1,34 @@
 <?php 
 
-include_once '/backend/DTO/Profile.php';
+include_once '/backend/DTO/Quest.php';
+include_once '/backend/DTO/Answer.php';
 include_once '/backend/DataAccess/Database.php';
 
 class ProfileData {
 
-	public function getLeaderboard(){
-		
+	public function getQuestList($id){
+
 		$connection = Database::getConnection();
 		
 		$query = "SELECT
-						p.id_profile as id,
-						p.username as username, 
-						p.score as score
+						q.id_question as question_id,
+						q.question as question, 
+						q.question_type as question_type,
+						q.question_point as question_point,
+						q.question_coin as question_coin,
+						a.id_answer as answer_id,
+						a.answer as answer,
+						a.flag_correct as correct,
 					FROM
-						Profile p
-					ORDER BY
-						p.score DESC";
+						quest_questions q,
+						question_answers a
+					WHERE 
+						q.id_question = a.id_question
+					AND q.id_question not in (
+							SELECT pa.id_question
+							  FROM profile_answers pa
+							 WHERE pa.id_profile = ".$id."
+						)";
 		 
 		// prepare query statement
 		$stmt = $connection->prepare($query);
@@ -26,11 +38,9 @@ class ProfileData {
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-		$ranking = array();
-		foreach($stmt->fetchAll() as $k=>$v) {
-			$ranking[] = $this->convertDbDataToDto($v);
-		}
-		return $ranking;
+		$question = $this->convertDbDataToDto($v);
+		
+		return $question;
 	}
 
 	
@@ -83,69 +93,11 @@ class ProfileData {
 		}
 	}
 	
-	public function updateCoins($id,$coins){
-		try {
-			$connection = Database::getConnection();
-
-			$query = "UPDATE Profile p
-						SET	p.coins = ".$coins."
-					  WHERE p.id_profile = ".$id ;
-			 
-			// prepare query statement
-			$stmt = $connection->prepare($query);
-		 
-			// execute query
-			$stmt->execute();
-
-			return "OK";
-		} catch(PDOException $e) {
-			return $sql . "<br>" . $e->getMessage();
-		}
-	}	
-
-	public function updateScore($id,$score){
-		try {		
-			$connection = Database::getConnection();
-
-			$query = "UPDATE Profile p
-						SET	p.score = ".$score."
-					  WHERE p.id_profile = ".$id ;
-			 
-			// prepare query statement
-			$stmt = $connection->prepare($query);
-		 
-			// execute query
-			$stmt->execute();
-
-			return "OK";
-		} catch(PDOException $e) {
-			return $sql . "<br>" . $e->getMessage();
-		}
-	}
-
-	public function verifyUsername($profile){
-		try {
-			$connection = Database::getConnection();
-
-			$query = "SELECT count(*)
-						FROM
-							Profile p
-						WHERE
-							p.username ='".$profile->username."'";
-			 
-			// prepare query statement
-			$stmt = $connection->prepare($query);
-		 
-			// execute query
-			$stmt->execute();
-			return $stmt->fetchColumn(); exit();
-			
-		} catch(PDOException $e) {
-			return $query . "<br>" . $e->getMessage();
-		}
-	}
-	
 	private function convertDbDataToDto($dbrow){
+		
+		foreach($stmt->fetchAll() as $k=>$v) {
+			$question = $this->convertDbDataToDto($v);
+		}		
 		$profile = new Profile();
 		
 		$profile->id = $dbrow['id'];

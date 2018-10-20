@@ -3,7 +3,6 @@
 include_once '/backend/ProfileDao.php';
 include_once '/backend/DTO/Profile.php';
 
-
 $request_method = $_SERVER['REQUEST_METHOD'];
 $input_data = json_decode(file_get_contents('php://input'),true);
 

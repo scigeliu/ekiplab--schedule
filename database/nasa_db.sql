@@ -34,21 +34,56 @@ USE `nasa_db`;
 DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
   `id_profile` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `username` varchar(512) NOT NULL,
+  `username` varchar(512) UNIQUE NOT NULL,
   `level` int(11) NOT NULL DEFAULT 1,
   `score` int(11) NOT NULL DEFAULT 0,
   `coins` int(11) NOT NULL DEFAULT 0
 
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-COMMIT;
 
-INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('fad',1,0,0)
-INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Jack',1,0,0)
-INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Leo',1,0,0)
-INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Anto198',1,0,0)
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('fad',1,10,2);
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Jack',2,64,10);
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Leo',1,23,0);
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Anto198',3,120,15);
 
-COMMIT;
 
+DROP TABLE IF EXISTS `profile_answers`;
+CREATE TABLE IF NOT EXISTS `question_answers` (
+  `id_profile` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_question` varchar(512) NOT NULL,
+  `id_answer` varchar(512) NOT NULL DEFAULT 1,
+  `flag_correct` tinyint(1) NOT NULL DEFAULT '0',
+  FOREIGN KEY (`id_profile`) REFERENCES profile (`id_profile`)
+            on delete no action
+            on update no action,
+  FOREIGN KEY (`id_question`) REFERENCES quest_questions (`id_question`)
+            on delete no action
+            on update no action,
+  FOREIGN KEY (`id_answer`) REFERENCES question_answers (`id_answer`)
+            on delete no action
+            on update no action
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+DROP TABLE IF EXISTS `quest_questions`;
+CREATE TABLE IF NOT EXISTS `quest_questions` (
+  `id_question` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `question` varchar(512) NOT NULL,
+  `question_type` int(11) NOT NULL DEFAULT 1,
+  `question_point` int(11) NOT NULL DEFAULT 0,
+  `question_coin` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `question_answers`;
+CREATE TABLE IF NOT EXISTS `question_answers` (
+  `id_answer` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_question` varchar(512) NOT NULL,
+  `answer` varchar(512) NOT NULL DEFAULT 1,
+  `flag_correct` tinyint(1) NOT NULL DEFAULT '0',
+  FOREIGN KEY (`id_question`) REFERENCES quest_questions (`id_question`)
+            on delete no action
+            on update no action  
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
