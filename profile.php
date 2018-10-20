@@ -11,16 +11,26 @@ if($request_method =='PUT' && $input_data['method'] == 'updateCoins'){
 	$profileId = $input_data['id'];
 	$coins = $input_data['coins'];
 	$profileDao = new ProfileDao();
-	$profileDao->updateCoins($profileId,$coins);
-	http_response_code(200);
-	print json_encode(array('status'=>'ok'));	
+	$return = $profileDao->updateCoins($profileId,$coins);
+	if($return == '0K'){
+		http_response_code(200);
+		print json_encode(array('status'=>'ok'));	
+	} else {
+		http_response_code(200);
+		print json_encode(array('status'=>'ko'));		
+	}
 } elseif($request_method =='PUT' && $input_data['method'] == 'updateScore'){
 	$profileId = $input_data['id'];
 	$score = $input_data['score'];
 	$profileDao = new ProfileDao();
-	$profileDao->updateScore($profileId,$score);
-	http_response_code(200);
-	print json_encode(array('status'=>'ok'));	
+	$return = $profileDao->updateScore($profileId,$score);
+	if($return == '0K'){
+		http_response_code(200);
+		print json_encode(array('status'=>'ok'));	
+	} else {
+		http_response_code(200);
+		print json_encode(array('status'=>'ko'));		
+	}	
 } elseif($request_method == "GET"){
 	$id = $_GET['profileId'];
 	$profileDao = new ProfileDao();
@@ -35,7 +45,16 @@ if($request_method =='PUT' && $input_data['method'] == 'updateCoins'){
 	$profile->score = 0;
 	$profileDao = new ProfileDao(); 	
 	$return = $profileDao->insertProfile($profile);
-	http_response_code(200);
-	print json_encode(array('status'=>'ok'));	
+
+	if($return == '0K'){
+		http_response_code(200);
+		print json_encode(array('status'=>'ok'));	
+	} elseif($return == 'DUPLICATE') {
+		http_response_code(200);
+		print json_encode(array('status'=>'ko',"message"=>'username in duplicate'));		
+	} else {
+		http_response_code(200);
+		print json_encode(array('status'=>'ko',"message"=>$return));		
+	}	
 }
 ?>
