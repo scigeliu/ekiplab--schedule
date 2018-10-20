@@ -45,15 +45,15 @@ if($request_method =='PUT' && $input_data['method'] == 'updateCoins'){
 	$profileDao = new ProfileDao(); 	
 	$return = $profileDao->insertProfile($profile);
 
-	if($return == '0K'){
+	if($return == 'KO'){
 		http_response_code(200);
-		print json_encode(array('status'=>'ok'));	
+		print json_encode(array('status'=>'ko',"message"=>$return));			
 	} elseif($return == 'DUPLICATE') {
 		http_response_code(200);
 		print json_encode(array('status'=>'ko',"message"=>'username in duplicate'));		
 	} else {
 		http_response_code(200);
-		print json_encode(array('status'=>'ko',"message"=>$return));		
+		print json_encode(array('status'=>'ok',"profile"=>$return));		
 	}	
 }
 ?>

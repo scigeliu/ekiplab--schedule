@@ -24,8 +24,13 @@ class ProfileDao {
 		$count = $profileData->verifyUsername($profile);
 		if($count>0)
 			return "DUPLICATE";
-		else
-			return $profileData->createProfile($profile);
+		else {
+			$result = $profileData->createProfile($profile);
+			if($result == "OK"){
+				return $profileData->getProfileDetailByusername($profile->username);
+			} else
+				return $result;
+		}
 	}	
 	
 }

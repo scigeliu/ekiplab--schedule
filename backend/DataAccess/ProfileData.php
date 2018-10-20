@@ -55,7 +55,7 @@ class ProfileData {
 		// execute query
 		$stmt->execute();
 		
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 
 		$profile = array();
 		foreach($stmt->fetchAll() as $k=>$v) {
@@ -64,6 +64,36 @@ class ProfileData {
 		return $profile;
 	}	
 
+	public function getProfileDetailByusername($username){
+		
+		$connection = Database::getConnection();
+		$query = "SELECT
+						p.id_profile as id,
+						p.username as username, 
+						p.score as score,
+						p.level as level, 
+						p.coins as coins
+					FROM
+						Profile p
+					WHERE
+						p.username like '".$username."'";
+		 
+		// prepare query statement
+		$stmt = $connection->prepare($query);
+	 
+		// execute query
+		$stmt->execute();
+		
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+		$profile = array();
+		foreach($stmt->fetchAll() as $k=>$v) {
+			$profile[] = $this->convertDbDataToDto($v);
+		}
+		return $profile;
+	}	
+	
+	
 	public function createProfile($profile){
 		try {
 			$connection = Database::getConnection();

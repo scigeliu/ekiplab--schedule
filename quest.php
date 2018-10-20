@@ -10,7 +10,7 @@ $input_data = json_decode(file_get_contents('php://input'),true);
 
 if($request_method == "GET"){
 	$questDao = new QuestDao();
-	$id = $_GET['idProfile'];
+	$id = $_GET['profileId'];
 	$questions = $questDao->getQuestList($id);
 	http_response_code(200);
 	print json_encode($questions);
