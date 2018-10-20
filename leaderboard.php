@@ -1,21 +1,11 @@
 <?php
 
-include_once '/backend/leaderbordDao.php';
+include_once '/backend/LeaderBoardDao.php';
 
-$method = $_GET['method'];
 
-if($method =='getLeaderboard'){
-	$num = $_GET['num'];
-	$launchDao = new LaunchDao();
-	$scheduled = $launchDao->getScheduledLaunch($num);
-	print json_encode($scheduled);	
+$leaderboardDao = new LeaderBoardDao();
+$leaderboard = $leaderboardDao->getLeaderboard();
+http_response_code(200);
+print json_encode($leaderboard);	
 
-} elseif($method =='getForDate'){
-	$dateFrom = $_GET['dateFrom'];
-	$dateTo = $_GET['dateTo'];
-	
-	$launchDao = new LaunchDao();
-	$scheduled = $launchDao->getScheduledLaunchForDate($dateFrom,$dateTo);
-	print json_encode($scheduled);	
-}
 ?>

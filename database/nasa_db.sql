@@ -33,14 +33,16 @@ USE `nasa_db`;
 
 DROP TABLE IF EXISTS `profile`;
 CREATE TABLE IF NOT EXISTS `profile` (
-  `id_profile` int(11) NOT NULL,
-  `username` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
-  `score` int(11) NOT NULL,
-  `coins` int(11) NOT NULL
+  `id_profile` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `username` varchar(512) NOT NULL,
+  `level` int(11) NOT NULL DEFAULT 1,
+  `score` int(11) NOT NULL DEFAULT 0,
+  `coins` int(11) NOT NULL DEFAULT 0
 
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
+
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('fad',1,0,0)
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

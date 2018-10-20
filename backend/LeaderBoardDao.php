@@ -1,9 +1,8 @@
 <?php
 
 include_once '/backend/DataAccess/ProfileData.php';
-include_once '/backend/DTO/Profile.php';
 
-class LaunchDao {
+class LeaderBoardDao {
 	
 	public function getLeaderboard(){
 		$leaderboard = new ProfileData();

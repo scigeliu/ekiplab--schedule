@@ -1,6 +1,6 @@
 <?php
 
-include_once '/backend/launchDao.php';
+include_once '/backend/LaunchDao.php';
 
 $method = $_GET['method'];
 
