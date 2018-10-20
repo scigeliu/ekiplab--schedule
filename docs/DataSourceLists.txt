@@ -1,0 +1,7 @@
+data source:
+https://launchlibrary.net/about.html
+https://launchlibrary.net/docs/1.4/api.html
+
+query example:
+https://launchlibrary.net/1.4/launch/next/5
+https://launchlibrary.net/1.4/launch/2018-10-01/2018-12-31
