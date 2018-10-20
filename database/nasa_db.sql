@@ -119,6 +119,31 @@ INSERT INTO `question_answers`( `id_answer`,`id_question`, `answer`, `flag_corre
 (19,5,'Houston, Texas',0),
 (20,5,'Roswell, New Mexico',0);
 
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE IF NOT EXISTS `product` (
+  `id_product` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `coins` int(11) NOT NULL,
+  `title` varchar(512) NOT NULL,
+  `category` varchar(512) NOT NULL,
+  `image` varchar(512) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;		
+
+INSERT INTO `product`( `id_product`,`coins`, `title`, `category`,`image`) VALUES 
+(1,150,'NASA Meatball T-Shirt','apparel','https://cdn.shopify.com/s/files/1/2120/7043/products/white-meatball_grande.jpg?v=1530042863'),
+(2,230,'Retro NASA T-Shirt','apparel','https://cdn.shopify.com/s/files/1/2120/7043/products/retro-cardinal-red_bd9dacac-f8be-40d8-a29b-6fbe23a04e89_grande.jpg?v=1533758452'),
+(3,200,"Women's Blue Retro NASA T-Shirt",'apparel','https://cdn.shopify.com/s/files/1/2120/7043/products/womens-retro-blue_grande.jpg?v=1504713269'),
+(4,280,'Spaced Out Tie','accessories','https://cdn.shopify.com/s/files/1/2120/7043/products/star-tie_grande.jpg?v=1508252060'),
+(5,280,'Spacewalk Tie','accessories','https://cdn.shopify.com/s/files/1/2120/7043/products/eva-tie_grande.jpg?v=1508251800'),
+(6,2100,'Orion Spacecraft 1/48 Scale Model','collectibles','https://cdn.shopify.com/s/files/1/2120/7043/products/orion-model_grande.jpg?v=1504638310'),
+(7,2600,'3 Shuttle Collection 1/200 Model','collectibles','https://cdn.shopify.com/s/files/1/2120/7043/products/3-shuttle-model_grande.jpg?v=1504712789'),
+(8,2200,'B747 With Shuttle 1/200 Model','collectibles','https://cdn.shopify.com/s/files/1/2120/7043/products/side-view-747-with-orbiter_grande.jpg?v=1504629379'),
+(9,2600,'Shuttle Orbiter with Cargo Doors','collectibles','https://cdn.shopify.com/s/files/1/2120/7043/products/orbiter-with-cargo-doors_grande.jpg?v=1508356299'),
+(10,180,'Hidden Figures','bookstore','https://cdn.shopify.com/s/files/1/2120/7043/products/hidden-figures_grande.jpg?v=1504711403'),
+(11,300,'Apollo 8 by Jeffrey Kluger','bookstore','https://cdn.shopify.com/s/files/1/2120/7043/products/apollo-8-book_grande.jpg?v=1508357628'),
+(12,230,'Jazz of Physics','bookstore','https://cdn.shopify.com/s/files/1/2120/7043/products/jazz-of-physics_grande.jpg?v=1507307069'),
+(13,50,'Astronaut Ice Cream Sandwich','space food','https://cdn.shopify.com/s/files/1/2120/7043/products/ice-cream-sandwhich_grande.jpg?v=1504115635'),
+(14,50,'Astronaut Strawberries','space food','https://cdn.shopify.com/s/files/1/2120/7043/products/astronaut-strawberries_grande.jpg?v=1504116285');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
