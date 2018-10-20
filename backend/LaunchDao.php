@@ -1,7 +1,7 @@
 <?php 
 
-include_once '/backend/DataAccess/LaunchData.php';
-include_once '/backend/DTO/Launch.php';
+include_once 'backend/DataAccess/LaunchData.php';
+include_once 'backend/DTO/Launch.php';
 
 class LaunchDao {
 	

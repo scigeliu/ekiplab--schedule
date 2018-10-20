@@ -1,6 +1,6 @@
 <?php
 
-include_once '/backend/DataAccess/MarketplaceData.php';
+include_once 'backend/DataAccess/MarketplaceData.php';
 
 class MarketplaceDao {
 	

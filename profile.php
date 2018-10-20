@@ -1,7 +1,7 @@
 <?php
 
-include_once '/backend/ProfileDao.php';
-include_once '/backend/DTO/Profile.php';
+include_once 'backend/ProfileDao.php';
+include_once 'backend/DTO/Profile.php';
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 $input_data = json_decode(file_get_contents('php://input'),true);
@@ -53,7 +53,7 @@ if($request_method =='PUT' && $input_data['method'] == 'updateCoins'){
 		print json_encode(array('status'=>'ko',"message"=>'username in duplicate'));		
 	} else {
 		http_response_code(200);
-		print json_encode(array('status'=>'ok',"profile"=>$return));		
+		print json_encode(array('status'=>'ok',"profile"=>$return),JSON_UNESCAPED_SLASHES);		
 	}	
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-include_once '/backend/DataAccess/QuestData.php';
+include_once 'backend/DataAccess/QuestData.php';
 
 class QuestDao {
 	

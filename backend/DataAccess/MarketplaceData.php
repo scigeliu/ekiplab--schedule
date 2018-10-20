@@ -1,7 +1,7 @@
 <?php 
 
-include_once '/backend/DTO/Product.php';
-include_once '/backend/DataAccess/Database.php';
+include_once 'backend/DTO/Product.php';
+include_once 'backend/DataAccess/Database.php';
 
 class MarketplaceData {
 
@@ -31,7 +31,6 @@ class MarketplaceData {
 		foreach($stmt->fetchAll() as $k=>$v) {
 			$products[] = $this->convertDbDataToDto($v);
 		}
-		print_r($products); exit();
 		return $products;
 	}
 	

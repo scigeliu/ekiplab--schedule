@@ -1,6 +1,6 @@
 <?php 
 
-include_once '/backend/DTO/Launch.php';
+include_once 'backend/DTO/Launch.php';
 
 class LaunchData {
 	

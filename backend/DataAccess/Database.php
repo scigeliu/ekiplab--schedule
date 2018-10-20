@@ -3,9 +3,9 @@ class Database{
 
     public static function getConnection(){
 		$host = "localhost";
-		$db_name = "nasa_db";
-		$username = "root";
-		$password = "";
+		$db_name = "ekiplab_nasa";
+		$username = "ekiplab_nasa";
+		$password = "ekiplab_nasa";
         $conn = null;
  
         try{

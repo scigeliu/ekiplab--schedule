@@ -1,8 +1,8 @@
 <?php 
 
-include_once '/backend/DTO/Quest.php';
-include_once '/backend/DTO/Answer.php';
-include_once '/backend/DataAccess/Database.php';
+include_once 'backend/DTO/Quest.php';
+include_once 'backend/DTO/Answer.php';
+include_once 'backend/DataAccess/Database.php';
 
 class ProfileData {
 

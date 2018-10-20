@@ -1,6 +1,6 @@
 <?php
 
-include_once '/backend/DataAccess/ProfileData.php';
+include_once 'backend/DataAccess/ProfileData.php';
 
 class ProfileDao {
 	

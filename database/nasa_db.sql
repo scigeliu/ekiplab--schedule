@@ -21,9 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `nasa_db`
 --
-DROP DATABASE IF EXISTS `nasa_db`;
-CREATE DATABASE IF NOT EXISTS `nasa_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `nasa_db`;
+-- DROP DATABASE IF EXISTS `nasa_db`;
+-- CREATE DATABASE IF NOT EXISTS `nasa_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ekiplab_nasa`;
 
 -- --------------------------------------------------------
 

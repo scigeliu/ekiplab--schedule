@@ -1,7 +1,7 @@
 <?php 
 
-include_once '/backend/DTO/Profile.php';
-include_once '/backend/DataAccess/Database.php';
+include_once 'backend/DTO/Profile.php';
+include_once 'backend/DataAccess/Database.php';
 
 class ProfileData {
 
