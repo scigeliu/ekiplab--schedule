@@ -10,6 +10,7 @@ $input_data = json_decode(file_get_contents('php://input'),true);
 
 if($request_method == "GET"){
 	$questDao = new QuestDao();
+	$id = $_GET['idProfile'];
 	$questions = $questDao->getQuestList($id);
 	http_response_code(200);
 	print json_encode($questions);
@@ -19,8 +20,8 @@ if($request_method == "GET"){
 	$answer->answerId = $input_data['answerId'];
 	$answer->profileId = $input_data['profileId'];
 	$answer->correct = $input_data['correct'];
-	$profileDao = new QuestDao(); 	
-	$return = $profileDao->insertProfileAnswer($answer);
+	$questDao = new QuestDao(); 	
+	$return = $questDao->insertProfileAnswer($answer);
 
 	if($return == '0K'){
 		http_response_code(200);

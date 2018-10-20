@@ -18,7 +18,7 @@ class ProfileData {
 						q.question_coin as question_coin,
 						a.id_answer as answer_id,
 						a.answer as answer,
-						a.flag_correct as correct,
+						a.flag_correct as correct
 					FROM
 						quest_questions q,
 						question_answers a
@@ -38,49 +38,18 @@ class ProfileData {
 
 		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-		$question = $this->convertDbDataToDto($v);
+		$question = $this->convertDbDataToDto($stmt);
 		
 		return $question;
 	}
 
-	
-	public function getProfileDetail($id){
-		
-		$connection = Database::getConnection();
-		
-		$query = "SELECT
-						p.id_profile as id,
-						p.username as username, 
-						p.score as score,
-						p.level as level, 
-						p.coins as coins
-					FROM
-						Profile p
-					WHERE
-						p.id_profile =".$id;
-		 
-		// prepare query statement
-		$stmt = $connection->prepare($query);
-	 
-		// execute query
-		$stmt->execute();
-		
-		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-		$profile = array();
-		foreach($stmt->fetchAll() as $k=>$v) {
-			$profile[] = $this->convertDbDataToDto($v);
-		}
-		return $profile;
-	}	
-
-	public function createProfile($profile){
+	public function insertProfileAnswer($answer){
 		try {
 			$connection = Database::getConnection();
 
-			$query = "INSERT INTO Profile
-						(username, score, level, coins)
-					  VALUES ('".$profile->username."','0','1','".$profile->coins."');";
+			$query = "INSERT INTO profile_answers
+						(id_profile, id_question, id_answer, flag_correct)
+					  VALUES ('".$answer->profileId."',".$answer->questionId.",".$answer->answerId.",'".$answer->correct."');";
 			 
 			// prepare query statement
 			$stmt = $connection->prepare($query);
@@ -93,20 +62,38 @@ class ProfileData {
 		}
 	}
 	
-	private function convertDbDataToDto($dbrow){
+	private function convertDbDataToDto($stmt){
+		$questions = array();
 		
 		foreach($stmt->fetchAll() as $k=>$v) {
-			$question = $this->convertDbDataToDto($v);
+			if(!empty($questions) && array_key_exists ($v['question_id'], $questions)){
+				$answer = new Answer();
+				$answer->answerId = $v['answer_id'];
+				$answer->answer = $v['answer'];
+				$answer->flagCorrect = $v['correct'];
+				
+				$questions[$v['question_id']]->answers[] = $answer;				
+			} else {
+				$question = new Quest();
+				$question->questionId = $v['question_id'];
+				$question->question = $v['question'];
+				$question->questionType = $v['question_type'];
+				$question->questionPoint = $v['question_point'];
+				$question->questionCoin = $v['question_coin'];
+				
+				$answer = new Answer();
+				$answer->answerId = $v['answer_id'];
+				$answer->answer = $v['answer'];
+				$answer->flagCorrect = $v['correct'];
+				
+				$question->answers = array($answer);
+
+				$questions[$v['question_id']] = $question;
+			}
+			$v['question_id'];
 		}		
-		$profile = new Profile();
-		
-		$profile->id = $dbrow['id'];
-		$profile->username = $dbrow['username'];
-		if(isset($dbrow['coins'])) $profile->coin = $dbrow['coins']; else $profile->coin = 0;
-		if(isset($dbrow['score'])) $profile->score = $dbrow['score']; else $profile->score = 0;
-		if(isset($dbrow['level'])) $profile->level = $dbrow['level']; else $profile->level = 1;	
-		
-		return $profile;
+
+		return $questions;
 	}	
 	
 }
