@@ -43,6 +43,12 @@ CREATE TABLE IF NOT EXISTS `profile` (
 COMMIT;
 
 INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('fad',1,0,0)
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Jack',1,0,0)
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Leo',1,0,0)
+INSERT INTO `profile`( `username`, `level`, `score`, `coins`) VALUES ('Anto198',1,0,0)
+
+COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

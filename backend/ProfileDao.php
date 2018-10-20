@@ -21,10 +21,11 @@ class ProfileDao {
 
 	public function insertProfile($profile){
 		$profileData = new ProfileData();
-		//$return = $profileData->createProfile($profile);
-		//print "return : " . print_r($return); exit();
-
-		return $profileData->createProfile($profile);
+		$count = $profileData->verifyUsername($profile);
+		if($count>0)
+			return "DUPLICATE";
+		else
+			return $profileData->createProfile($profile);
 	}	
 	
 }

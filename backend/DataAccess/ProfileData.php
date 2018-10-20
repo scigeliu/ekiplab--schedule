@@ -16,6 +16,7 @@ class ProfileData {
 		$this->conn = null;
 		try{
 			$this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$this->conn -> exec("set names utf8");
         } catch(PDOException $exception){
 			echo "Connection error: " . $exception->getMessage();
@@ -86,53 +87,81 @@ class ProfileData {
 		try {
 			$connection = $this->getConnection();
 
-			$query = "INSERT INTO Profile p
-						(profile_id,username, score, level, coins)
-					  VALUES (2".$profile->username.",0,1,".$profile->coins.");";
+			$query = "INSERT INTO Profile
+						(username, score, level, coins)
+					  VALUES ('".$profile->username."','0','1','".$profile->coins."');";
 			 
 			// prepare query statement
 			$stmt = $connection->prepare($query);
 		 
 			// execute query
 			$stmt->execute();
-			print "return : si" . print_r($stmt); exit();
+			return "OK";
 		} catch(PDOException $e) {
-			print "return : no" . print_r($e); exit();
-			return $sql . "<br>" . $e->getMessage();
+			return $query . "<br>" . $e->getMessage();
 		}
 	}
 	
 	public function updateCoins($id,$coins){
-		$connection = $this->getConnection();
+		try {
+			$connection = $this->getConnection();
 
-		$query = "UPDATE Profile p
-					SET	p.coins = ".$coins."
-				  WHERE p.id_profile = ".$id ;
+			$query = "UPDATE Profile p
+						SET	p.coins = ".$coins."
+					  WHERE p.id_profile = ".$id ;
+			 
+			// prepare query statement
+			$stmt = $connection->prepare($query);
 		 
-		// prepare query statement
-		$stmt = $connection->prepare($query);
-	 
-		// execute query
-		$stmt->execute();
+			// execute query
+			$stmt->execute();
 
-		return $stmt;
+			return "OK";
+		} catch(PDOException $e) {
+			return $sql . "<br>" . $e->getMessage();
+		}
 	}	
 
 	public function updateScore($id,$score){
-		
-		$connection = $this->getConnection();
+		try {		
+			$connection = $this->getConnection();
 
-		$query = "UPDATE Profile p
-					SET	p.score = ".$score."
-				  WHERE p.id_profile = ".$id ;
+			$query = "UPDATE Profile p
+						SET	p.score = ".$score."
+					  WHERE p.id_profile = ".$id ;
+			 
+			// prepare query statement
+			$stmt = $connection->prepare($query);
 		 
-		// prepare query statement
-		$stmt = $connection->prepare($query);
-	 
-		// execute query
-		$stmt->execute();
+			// execute query
+			$stmt->execute();
 
-		return $stmt;
+			return "OK";
+		} catch(PDOException $e) {
+			return $sql . "<br>" . $e->getMessage();
+		}
+	}
+
+	public function verifyUsername($profile){
+		try {
+			$connection = $this->getConnection();
+
+			$query = "SELECT count(*)
+						FROM
+							Profile p
+						WHERE
+							p.username ='".$profile->username."'";
+			 
+			// prepare query statement
+			$stmt = $connection->prepare($query);
+		 
+			// execute query
+			$stmt->execute();
+			return $stmt->fetchColumn(); exit();
+			
+		} catch(PDOException $e) {
+			return $query . "<br>" . $e->getMessage();
+		}
 	}
 	
 	private function convertDbDataToDto($dbrow){
