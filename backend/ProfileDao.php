@@ -17,6 +17,15 @@ class ProfileDao {
 	public function updateScore($id,$score){
 		$profileData = new ProfileData();
 		return $profileData->updateScore($id,$score);
+	}
+
+	public function insertProfile($profile){
+		$profileData = new ProfileData();
+		//$return = $profileData->createProfile($profile);
+		//print "return : " . print_r($return); exit();
+
+		return $profileData->createProfile($profile);
 	}	
+	
 }
 ?>

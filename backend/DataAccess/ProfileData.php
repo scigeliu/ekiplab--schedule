@@ -83,20 +83,23 @@ class ProfileData {
 	}	
 
 	public function createProfile($profile){
+		try {
+			$connection = $this->getConnection();
 
-		$connection = $this->getConnection();
-
-		$query = "INSERT INTO Profile p
-					(username, score, level, coins)
-				  VALUES (".$profile->username.",0,1,0);";
+			$query = "INSERT INTO Profile p
+						(profile_id,username, score, level, coins)
+					  VALUES (2".$profile->username.",0,1,".$profile->coins.");";
+			 
+			// prepare query statement
+			$stmt = $connection->prepare($query);
 		 
-		// prepare query statement
-		$stmt = $connection->prepare($query);
-	 
-		// execute query
-		$stmt->execute();
-
-		return $stmt;
+			// execute query
+			$stmt->execute();
+			print "return : si" . print_r($stmt); exit();
+		} catch(PDOException $e) {
+			print "return : no" . print_r($e); exit();
+			return $sql . "<br>" . $e->getMessage();
+		}
 	}
 	
 	public function updateCoins($id,$coins){
