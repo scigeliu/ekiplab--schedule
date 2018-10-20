@@ -1,0 +1,16 @@
+candidate guest/challenges for fun and/or kids:
+
+Trivial SpaceMission
+a game of question/answer linked to specialized information about space mission and astrofisics discoveries
+
+examples:
++ which satellite is important for fire monitoring? 
+  - NOAA National Oceanic and Atmospheric Administration
+  - GOES Geostationary Operational Environmental Satellites (GOES)
++ where is the russian space-drome? 
+  - baikonur
++ which is the first satellite sent by mankind? 
+  - sputnik
+
+puzzle:
+puzzle with images

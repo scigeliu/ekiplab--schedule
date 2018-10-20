@@ -1,0 +1,2 @@
+1 - we will provide nation code, useful for linking to flag, (ISO NATION)
+2 - we will provide maps position useful for a ww-snapshot
