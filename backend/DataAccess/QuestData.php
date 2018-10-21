@@ -71,6 +71,7 @@ class ProfileData {
 				$answer->answerId = $v['answer_id'];
 				$answer->answer = $v['answer'];
 				$answer->flagCorrect = $v['correct'];
+				$answer->correct = $v['correct'];
 				
 				if($v['correct'] == 1){
 					$questions[$v['question_id']]->flashCardBack = $v['answer'];
@@ -94,7 +95,8 @@ class ProfileData {
 				$answer = new Answer();
 				$answer->answerId = $v['answer_id'];
 				$answer->answer = $v['answer'];
-				$answer->correct = $v['correct'] == 1 ? true : false;
+				$answer->flagCorrect = $v['correct'];
+				$answer->correct = $v['correct'];
 				
 				$question->answers = array($answer);
 

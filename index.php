@@ -23,7 +23,7 @@
 			</div>
 			<div class="col-sm-12 bottom">
 				<div id="download-app">
-					 <a href="download.php">Download app</a> 
+					 <a href="download.php">Download demo app</a>
 				<div>
 			</div>
 		</div>

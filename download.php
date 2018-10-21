@@ -6,7 +6,7 @@ include_once 'backend/DownloadDao.php';
 $downloadDao = new DownloadDao();
 $downloadDao->insertDownload(get_client_ip());
 
-$file = "nomefile.apk";
+$file = "orbit_v.0.1.apk";
 $path = realpath("/home/public_html/app/".$file); 
 
 header("Cache-Control: public");
