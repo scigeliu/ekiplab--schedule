@@ -8,6 +8,10 @@ class Quest {
 	public $questionPoint;
 	public $questionCoin;
 	public $answers;
+
+	public $flashCardFront;
+	public $flashCardBack;
+	public $flashCardFlipped;
 	
 }
 ?>

@@ -72,6 +72,10 @@ class ProfileData {
 				$answer->answer = $v['answer'];
 				$answer->flagCorrect = $v['correct'];
 				
+				if($v['correct'] == 1){
+					$questions[$v['question_id']]->flashCardBack = $v['answer'];
+				}	
+				
 				$questions[$v['question_id']]->answers[] = $answer;				
 			} else {
 				$question = new Quest();
@@ -80,11 +84,17 @@ class ProfileData {
 				$question->questionType = $v['question_type'];
 				$question->questionPoint = $v['question_point'];
 				$question->questionCoin = $v['question_coin'];
-				
+				$question->flashCardFront = "<p>".$v['question']."</p>";
+				$question->flashCardFlipped = false;
+
+				if($v['correct'] == 1){
+					$question->flashCardBack = "<p>".$v['answer']."</p>";
+				}
+
 				$answer = new Answer();
 				$answer->answerId = $v['answer_id'];
 				$answer->answer = $v['answer'];
-				$answer->flagCorrect = $v['correct'];
+				$answer->correct = $v['correct'] == 1 ? true : false;
 				
 				$question->answers = array($answer);
 

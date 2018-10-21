@@ -15,7 +15,11 @@ if($request_method == "GET"){
 	$id = $_GET['profileId'];
 	$questions = $questDao->getQuestList($id);
 	http_response_code(200);
-	print json_encode($questions,JSON_UNESCAPED_SLASHES);
+	$simplifyQuestions = array();
+	foreach($questions as $item){
+		$simplifyQuestions[] = $item;
+	}
+	print json_encode(array("questions"=>$simplifyQuestions));
 } elseif($request_method == "POST"){
 	$answer = new ProfileAnswer();
 	$answer->questionId = $input_data['questionId'];

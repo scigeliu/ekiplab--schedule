@@ -145,6 +145,14 @@ INSERT INTO `product`( `id_product`,`coins`, `title`, `category`,`image`) VALUES
 (14,50,'Astronaut Strawberries','space food','https://cdn.shopify.com/s/files/1/2120/7043/products/astronaut-strawberries_grande.jpg?v=1504116285');
 
 
+DROP TABLE IF EXISTS `download`;
+CREATE TABLE IF NOT EXISTS `download` (
+  `id_download` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `download_ip` varchar(25) NOT NULL,
+  `download_date` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;	
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

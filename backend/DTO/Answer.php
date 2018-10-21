@@ -5,7 +5,7 @@ class Answer {
 	public $answerId;
 	public $questionId;
 	public $answer;
-	public $flagCorrect;
+	public $correct;
 
 }
 ?>

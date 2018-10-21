@@ -23,7 +23,7 @@
 			</div>
 			<div class="col-sm-12 bottom">
 				<div id="download-app">
-					 <a href="/app/century-gothic.zip">Download app</a> 
+					 <a href="download.php">Download app</a> 
 				<div>
 			</div>
 		</div>
