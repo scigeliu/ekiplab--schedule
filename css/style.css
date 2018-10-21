@@ -1,0 +1,59 @@
+@font-face {
+    font-family: Century Gothic;
+    src: url(../font/Century Gothic.ttf);
+}
+
+body{
+	background: url('../img/green-galaxy.jpg');
+	background-size: cover;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif !important;
+	color: #ffffff !important;
+}
+
+p{
+	text-align: center !important;
+	font-size: 3em !important;
+}
+.top{
+	margin-top: 100px;
+}
+.middle,
+.bottom{
+	margin-top: 50px;
+}
+#logo{
+	text-align: center;
+	position: relative;
+
+}
+
+#logo img{
+	width: 350px;
+}
+
+#challenge{
+	text-align: center;
+}
+
+#challenge span{
+	font-size: 1.5em;
+}
+
+#challenge img{
+	width: 150px;
+}
+
+#download-app{
+	margin-top: 50px;
+	text-align:center;
+}
+#download-app a,
+#download-app a:hover {
+	border: 2px solid #ffffff;
+	border-radius:30px;
+	padding:20px;
+	font-size: 1em;
+	font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+}

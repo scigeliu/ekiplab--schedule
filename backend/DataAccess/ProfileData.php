@@ -14,7 +14,7 @@ class ProfileData {
 						p.username as username, 
 						p.score as score
 					FROM
-						Profile p
+						profile p
 					ORDER BY
 						p.score DESC";
 		 
@@ -45,7 +45,7 @@ class ProfileData {
 						p.level as level, 
 						p.coins as coins
 					FROM
-						Profile p
+						profile p
 					WHERE
 						p.id_profile =".$id;
 		 
@@ -74,7 +74,7 @@ class ProfileData {
 						p.level as level, 
 						p.coins as coins
 					FROM
-						Profile p
+						profile p
 					WHERE
 						p.username like '".$username."'";
 		 
@@ -98,7 +98,7 @@ class ProfileData {
 		try {
 			$connection = Database::getConnection();
 
-			$query = "INSERT INTO Profile
+			$query = "INSERT INTO profile
 						(username, score, level, coins)
 					  VALUES ('".$profile->username."','0','1','".$profile->coins."');";
 			 
@@ -117,7 +117,7 @@ class ProfileData {
 		try {
 			$connection = Database::getConnection();
 
-			$query = "UPDATE Profile p
+			$query = "UPDATE profile p
 						SET	p.coins = ".$coins."
 					  WHERE p.id_profile = ".$id ;
 			 
@@ -137,7 +137,7 @@ class ProfileData {
 		try {		
 			$connection = Database::getConnection();
 
-			$query = "UPDATE Profile p
+			$query = "UPDATE profile p
 						SET	p.score = ".$score."
 					  WHERE p.id_profile = ".$id ;
 			 
@@ -159,7 +159,7 @@ class ProfileData {
 
 			$query = "SELECT count(*)
 						FROM
-							Profile p
+							profile p
 						WHERE
 							p.username ='".$profile->username."'";
 			 
